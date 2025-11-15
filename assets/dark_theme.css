@@ -1,0 +1,14 @@
+:root {
+  --bg: #0f1115;
+  --panel: #131722;
+  --panel-2: #151a26;
+  --border: #243047;
+  --text: #e7ebf3;
+  --muted: #a8b0c2;
+  --accent: #1fbfb8;
+  --radius: 14px;
+  --shadow: 0 1px 4px rgba(0,0,0,0.35);
+  --content-max: {{CONTENT_MAX_PX}}px;
+  --caret: #ffffff; /* white cursor in dark mode */
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
