@@ -1,0 +1,35 @@
+:root {
+  --bg: #f7f9fc;
+  --panel: #ffffff;
+  --panel-2: #ffffff;
+  --border: #cfd8e6;
+  --text: #0f172a;
+  --muted: #64748b;
+  --accent: #0ea5a3;
+  --radius: 14px;
+  --shadow: 0 1px 3px rgba(15,23,42,0.06);
+  --content-max: {{CONTENT_MAX_PX}}px;
+  --caret: #000000; /* black cursor in light mode */
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.custom-button {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+/* Darker dividers for main content in light mode */
+[data-testid="stVerticalBlock"] > [data-testid="stDivider"] > div {
+    border-color: #64748b !important; /* Muted dark gray */
+}
+
+/* Darker tab divider in light mode */
+[data-testid="stTabs"] div[role="tablist"] {
+    border-bottom: 1px solid #64748b !important;
+}
+
+/* Text input styling for light mode */
+[data-testid="stTextInput"] input {
+    background-color: #FFFFFF;
+    color: #000000;
+}
