@@ -1,0 +1,469 @@
+/* Global backgrounds */
+html, body,
+[data-testid="stAppViewContainer"],
+section[data-testid="stMain"],
+[data-testid="stHeader"] {
+  background: var(--bg) !important;
+}
+
+/* Hide Streamlit header and toolbar for a clean, custom UI */
+header[data-testid="stHeader"] { 
+  display: none !important; 
+}
+div[data-testid="stToolbar"] { 
+  display: none !important; 
+}
+
+section[data-testid="stMain"] {
+  padding-top: 0.5rem !important;
+}
+
+/* Ensure a visible divider line in the main content (fix missing line in light theme). */
+/* Streamlit sometimes renders subtle dividers that get hidden by theme defaults; make them explicit here. */
+hr,
+[data-testid="stDivider"] > div,
+[data-testid="stDivider"] {
+  border: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+  opacity: 1 !important;
+  margin: 0.5rem 0 !important;
+  border-top: 1px solid var(--border) !important;
+}
+
+/* Slightly stronger line in light theme for better contrast */
+:root[data-theme="light"] hr,
+:root[data-theme="light"] [data-testid="stDivider"] > div,
+:root[data-theme="light"] [data-testid="stDivider"] {
+  border-top-color: color-mix(in oklab, var(--border) 85%, #000 15%) !important;
+}
+
+/* Base */
+main, .stApp { background: var(--bg); color: var(--text); }
+p, span, label { color: var(--text); }
+            
+/* Sidebar */
+section[data-testid="stSidebar"] {
+  background: var(--panel) !important;
+  min-width: 360px;
+  max-width: 360px;
+  border-right: 1px solid var(--border);
+}
+
+/* Other sidebar rules */
+div[aria-label="Sidebar"] div[aria-label*="drag"] { display: none !important; }
+section[data-testid="stSidebar"] .block-container { 
+  padding-top: 1.2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+section[data-testid="stSidebar"] :is(h1,h2,h3,h4,h5,h6) {
+  color: var(--text) !important;
+}
+section[data-testid="stSidebar"] hr,
+section[data-testid="stSidebar"] [data-testid="stDivider"] > div,
+section[data-testid="stSidebar"] div[role="separator"] {
+  border: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+  opacity: 1 !important;
+  border-top: 1px solid var(--border) !important;
+  margin: 1rem 0 !important;
+}
+
+/* Buttons */
+.stButton > button {
+  width: 100%; height: 38px;
+  border-radius: 10px;
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.stButton > button:hover { border-color: var(--accent); }
+
+.custom-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid var(--border);
+}
+
+.custom-button:hover {
+    border-color: var(--accent);
+}
+
+/* Conversation list */
+.sidebar-radio .stRadio div[role="radiogroup"] > label {
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  border-radius: 10px;
+  padding: .55rem .75rem;
+  margin-bottom: .45rem;
+  width: 100%;
+  display: flex; align-items: center; gap: .5rem;
+}
+
+/* Manage buttons row */
+.sidebar-manage { display: flex; gap: 8px; margin-top: 6px; }
+.sidebar-manage .stButton { flex: 1 1 0; margin: 0 !important; }
+.sidebar-manage .stButton > button {
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* Chat bubbles */
+.stChatMessage { background: transparent; }
+.stChatMessage .stMarkdown { color: var(--text); }
+.stChatMessage[data-testid="stChatMessageUser"] .stMarkdown > div,
+.stChatMessage[data-testid="stChatMessageAssistant"] .stMarkdown > div {
+  background: var(--panel-2); 
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: .85rem 1rem;
+}
+            
+/* —— Kill focus rings/outlines in the chat input area —— */
+div[data-testid="stChatInput"],
+div[data-testid="stChatInput"] * {
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+div[data-testid="stChatInput"] :focus,
+div[data-testid="stChatInput"] :focus-visible,
+div[data-testid="stChatInput"] :focus-within {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Text input/textarea — no borders; outer pill handles focus/glow */
+div[data-testid="stChatInput"] input,
+div[data-testid="stChatInput"] textarea{
+  outline: none !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+/* The outer container sometimes gets a focus ring too */
+div[data-testid="stChatInput"],
+div[data-testid="stChatInput"] > div {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Send button focus — no borders */
+div[data-testid="stChatInput"] button,
+div[data-testid="stChatInput"] button:focus,
+div[data-testid="stChatInput"] button:focus-visible { border: 0 !important; box-shadow: none !important; }
+
+/* Firefox inner focus */
+div[data-testid="stChatInput"] button::-moz-focus-inner,
+div[data-testid="stChatInput"] input::-moz-focus-inner,
+div[data-testid="stChatInput"] textarea::-moz-focus-inner {
+  border: 0 !important;
+}
+
+/* ========== CHAT INPUT — unified pill, no bleed/gaps ========== */
+
+/* clean any bottom strips */
+div[data-testid="stBottom"],
+div[data-testid="stBottom"] > div,
+div[data-testid="stFooter"],
+div[data-testid="stDecoration"] { background: var(--bg) !important; }
+
+/* Extra wrappers that sometimes paint a strip behind the input in Light mode */
+section[data-testid="stMain"] > div:last-child { background: var(--bg) !important; }
+
+div[data-testid="stMainBlockContainer"] > div:has(> div[data-testid="stChatInput"]) { background: var(--bg) !important; }
+
+/* host bar */
+div[data-testid="stChatInput"]{
+  position: sticky; bottom: 0;
+  background: var(--bg) !important;
+  padding: .5rem .5rem calc(.5rem + var(--safe-bottom)) !important;
+  border-top: 1px solid var(--border) !important;
+  box-shadow: none !important;
+}
+
+/* Ensure main content uses our max width */
+section[data-testid="stMain"] .block-container { 
+  max-width: var(--content-max) !important;
+}
+            
+/* OUTER “pill” */
+div[data-testid="stChatInput"] > div{
+  width: 100% !important;
+  max-width: var(--content-max) !important;   /* align with main content */
+  margin: 0 auto !important;
+
+  display: flex !important;
+  align-items: stretch !important;            /* button = input height */
+  gap: 0 !important;
+
+  background: var(--panel-2) !important;
+  border: none !important;                     /* borderless pill */
+  border-radius: 16px !important;
+  overflow: hidden !important;                /* clip inner corners */
+  box-shadow: var(--shadow) !important;
+}
+
+/* remove nested ghost backgrounds */
+div[data-testid="stChatInput"] > div *{
+  background: transparent !important;
+}
+
+/* INPUT */
+div[data-testid="stChatInput"] input,
+div[data-testid="stChatInput"] textarea{
+  flex: 1 1 auto;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 14px 16px !important;
+  min-height: 52px !important;
+  color: var(--text) !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  height: 52px !important;
+}
+
+div[data-testid="stChatInput"] input::placeholder,
+div[data-testid="stChatInput"] textarea::placeholder{
+  color: var(--muted) !important; opacity: .8 !important;
+}
+
+/* focus glow on the pill (not on the input) */
+div[data-testid="stChatInput"] > div:focus-within{
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--accent) 22%, transparent);
+}
+
+/* LEFT segment (text area wrapper) */
+div[data-testid="stChatInput"] > div > div:first-child {
+  border: none !important;
+  display: flex !important;
+  align-items: center !important;
+  border-top-left-radius: 16px !important;
+  border-bottom-left-radius: 16px !important;
+  overflow: hidden !important;
+}
+
+/* BUTTON — perfectly centered via grid; no extra borders here */
+div[data-testid="stChatInput"] button{
+  display: grid !important;
+  place-items: center !important;
+  margin: 0 !important;
+  padding: 0 14px !important;
+  border: 0 !important;                /* the divider is on the wrapper, not the button */
+  border-radius: 0 !important;
+  min-width: 52px !important;
+  height: 52px !important;             /* match input height */
+  cursor: pointer !important;
+  background: transparent !important;
+}
+
+/* Hover — gentle tint */
+div[data-testid="stChatInput"] button:hover{
+  background: color-mix(in oklab, var(--panel-2) 92%, var(--accent) 8%);
+}
+div[data-testid="stChatInput"] button:hover svg{
+  color: var(--accent) !important;
+}
+
+/* === Cursor color adjustment (light vs dark theme) === */
+div[data-testid="stChatInput"] input,
+div[data-testid="stChatInput"] textarea {
+  caret-color: var(--caret) !important;
+}
+            
+
+/* === FIX: keep chat input height identical empty vs. typed === */
+
+/* Outer pill: fix height and vertically center children */
+div[data-testid="stChatInput"] > div {
+  height: 52px !important;          /* <-- add */
+  min-height: 52px !important;      /* <-- add */
+  align-items: center !important;   /* <-- ensure center baseline */
+}
+
+/* Textarea/Input: hard-stop autosizing and match pill height */
+div[data-testid="stChatInput"] textarea,
+div[data-testid="stChatInput"] input {
+  height: 52px !important;          /* <-- add */
+  min-height: 52px !important;      /* <-- add */
+  max-height: 52px !important;      /* <-- add */
+  line-height: 22px !important;     /* placeholder + caret vertically balanced */
+  padding-top: 14px !important;
+  padding-bottom: 14px !important;
+  resize: none !important;          /* stop manual grow */
+  overflow: hidden !important;      /* no scrollbar flicker */
+}
+
+/* Arrow icon: no vertical shift */
+div[data-testid="stChatInput"] button svg {
+  transform: none !important;
+  margin: 0 !important;
+}
+
+/* ---------- Built-in st.toast light/dark theming ---------- */
+/* Streamlit’s toast uses different wrappers across versions, so we cover a few */
+div[data-testid="stToast"],
+div[data-testid="stNotification"],
+div[data-baseweb="toast"] {
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--shadow) !important;
+}
+
+/* Use theme vars by default (works for Dark) */
+div[data-testid="stToast"] > div,
+div[data-testid="stNotification"] > div,
+div[data-baseweb="toast"] {
+  background: var(--panel) !important;
+  color: var(--text) !important;
+}
+
+/* Explicit Light-mode override: white background, black text */
+:root[data-theme="light"] div[data-testid="stToast"] > div,
+:root[data-theme="light"] div[data-testid="stNotification"] > div,
+:root[data-theme="light"] div[data-baseweb="toast"] {
+  background: #ffffff !important;
+  color: #0f172a !important; /* near your --text for light */
+}
+
+/* Ensure inner text/icons adopt the color */
+div[data-testid="stToast"] * ,
+div[data-testid="stNotification"] * ,
+div[data-baseweb="toast"] * {
+  color: inherit !important;
+}
+            
+/* ===================== MOBILE RESPONSIVE RULES ===================== */
+/* (These rules improve the experience on smaller screens, but do not add a mobile menu) */
+@media (max-width: 768px) {
+  /* Hide the sidebar completely on narrow screens */
+  section[data-testid="stSidebar"] {
+    display: none !important;
+  }
+
+  /* Content width: use almost full viewport */
+  :root { --content-max: 92vw !important; }
+
+  /* Title and caption spacing */
+  .st-emotion-cache-10trblm, .st-emotion-cache-1v0mbdj { /* defensive: Streamlit title classes change across versions */
+    margin-bottom: .25rem !important;
+  }
+
+  /* Buttons bigger for touch */
+  .stButton > button {
+    height: 44px !important;
+    font-size: 0.95rem !important;
+  }
+
+  /* Chat bubbles padding smaller to fit */
+  .stChatMessage[data-testid="stChatMessageUser"] .stMarkdown > div,
+  .stChatMessage[data-testid="stChatMessageAssistant"] .stMarkdown > div {
+    padding: .7rem .8rem !important;
+  }
+
+  /* Chat input: shorter, with safe area inset for iOS bottom bar */
+  div[data-testid="stChatInput"] {
+    padding: .4rem .4rem calc(.4rem + var(--safe-bottom)) !important;
+  }
+  div[data-testid="stChatInput"] > div {
+    height: 48px !important;
+    min-height: 48px !important;
+  }
+  div[data-testid="stChatInput"] textarea,
+  div[data-testid="stChatInput"] input {
+    height: 48px !important;
+    min-height: 48px !important;
+    max-height: 48px !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    font-size: 15px !important;
+  }
+  div[data-testid="stChatInput"] button {
+    height: 48px !important;
+    min-width: 48px !important;
+  }
+  div[data-testid="stChatInput"] button svg {
+    width: 21px !important;
+    height: 21px !important;
+  }
+
+  /* Reduce big paddings at the top of main area on mobile */
+  section[data-testid="stMain"] .block-container {
+    padding-top: .4rem !important;
+  }
+}
+
+/* --- Borderless chat input style --- */
+div[data-testid="stChatInput"] > div {
+  border: none !important;
+  box-shadow: 0 0 6px rgba(0,0,0,0.3) !important;
+  background: var(--panel-2) !important;
+}
+
+div[data-testid="stChatInput"] > div:focus-within {
+  box-shadow: 0 0 6px color-mix(in oklab, var(--accent) 35%, transparent) !important;
+  border: none !important;
+}
+
+/* Remove inner borders and dividers */
+div[data-testid="stChatInput"] > div > div,
+div[data-testid="stChatInput"] > div > div * {
+  border: none !important;
+}
+
+/* Send button hover glow (optional aesthetic) */
+div[data-testid="stChatInput"] button:hover {
+  background: color-mix(in oklab, var(--accent) 12%, var(--panel-2) 88%) !important;
+}
+
+/* --- Login Page Inputs --- */
+/* Target the input container for border and background */
+body .login-container [data-testid="stTextInput"] > div {
+    background: var(--panel-2) !important;
+    border-radius: 10px !important;
+    border: 1px solid var(--border) !important;
+    box-shadow: var(--shadow) !important;
+    transition: box-shadow 150ms ease-in-out, border-color 150ms ease-in-out !important;
+}
+/* Ensure border is visible in light theme */
+body[data-theme="light"] .login-container [data-testid="stTextInput"] > div {
+    border-color: #DCDCDC !important; /* A visible light gray */
+}
+
+/* Target the actual input field inside the container */
+body .login-container [data-testid="stTextInput"] input {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 14px 16px !important;
+    height: 50px !important;
+    color: var(--text) !important;
+}
+
+/* Apply focus glow to the input container */
+body .login-container [data-testid="stTextInput"] > div:focus-within {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 2px color-mix(in oklab, var(--accent) 22%, transparent) !important;
+}
+
+body .login-container form {
+    margin-top: 1rem !important;
+}
+body .login-container .stTabs {
+    margin-top: 1.5rem !important;
+}
+
+/* Hide "Press Enter to submit form" hint */
+div[data-testid="InputInstructions"] > span:nth-child(1) {
+    visibility: hidden;
+}
+
+/* Align items in user profile section */
+section[data-testid="stSidebar"] [data-testid="stHorizontalBlock"] {
+    align-items: center;
+}

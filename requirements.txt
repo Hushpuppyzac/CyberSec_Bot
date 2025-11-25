@@ -1,0 +1,8 @@
+streamlit
+google-genai
+python-dotenv
+pyrebase4
+setuptools
+toml
+firebase-admin
+cryptography
